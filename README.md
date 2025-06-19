@@ -21,4 +21,9 @@ A Django-based quiz application where users can log in, take timed quizzes, and 
 - Open Trivia DB API
 
 ---
+## 🔗 Author
+
+Made with ❤️ by [Somendra Pratap Singh](https://github.com/somendra09)  
+📧 Email: somendrathakur071@gmail.com
+
 
