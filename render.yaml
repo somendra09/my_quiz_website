@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: quiz-app
+    runtime: python
+    buildCommand: ""
+    startCommand: gunicorn quiz_website.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: quiz_website.settings
+      - key: PYTHON_VERSION
+        value: 3.13.1
+    autoDeploy: true
