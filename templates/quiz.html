@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Quiz Time</h2>
+<form method="post">
+    {% csrf_token %}
+    <div id="timer" class="alert alert-warning">Time Left: <span id="time">300</span>s</div>
+    {% for question in data %}
+        <div class="card mb-3">
+            <div class="card-header">{{ forloop.counter }}. {{ question.question|safe }}</div>
+            <div class="card-body">
+                {% for ans in question.answers %}
+                    <input type="radio" name="q{{ forloop.parentloop.counter0 }}" value="{{ ans }}" required> {{ ans|safe }}<br>
+                {% endfor %}
+                <input type="hidden" name="correct{{ forloop.counter0 }}" value="{{ question.correct_answer }}">
+            </div>
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+<script>
+    let time = 300;
+    let timer = setInterval(() => {
+        time--;
+        document.getElementById("time").textContent = time;
+        if (time <= 0) {
+            clearInterval(timer);
+            alert("Time's up!");
+            document.querySelector("form").submit();
+        }
+    }, 1000);
+</script>
+{% endblock %}
